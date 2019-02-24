@@ -1,0 +1,10 @@
+<div class="container" *ngIf="quoteFlag">
+  <nav>
+    <button routerLink="/Food" routerLinkActive="active" type="button" class="transparentButtons mb40"><i class="icon-food"></i> <b> <span class="p5Left">Grab Food</span></b></button><br><br>
+    <button routerLink="/Drinks" routerLinkActive="active" type="button" class="transparentButtons mb40"><i class="icon-glass"></i> <b> <span class="p5Left">Get a Drink</span></b></button><br><br>
+    <button routerLink="/Explore" routerLinkActive="active" type="button" class="transparentButtons mb40"><i class="icon-compass"></i> <b> <span class="p5Left">Explore Nearby</span></b></button><br><br>
+  </nav>
+  <div class="footer">
+    <p>"{{message.quote}}"   <span class="mb-0">-{{message.author}}</span> </p>
+  </div>
+</div> 

@@ -1,0 +1,250 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("quicktrip1.gif");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0%;
+    min-height: 100%;
+  }
+
+/* alignment style */
+.textAlignCenter {
+    text-align: center;
+}
+
+.textAlignRight {
+    text-align: right;
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+/* color style */
+.colorWhite {
+    color: white;
+}
+
+.colorGreen {
+    color: green;
+}
+
+.bgRed {
+    background-color: red !important;
+}
+
+.bgRed:hover {
+    background-color: red !important;
+}
+
+/* background style */
+.bgWhite {
+    background-color: white;
+}
+
+.formPadding :first-child {
+    margin-right: 24px;
+    float: left;
+}
+
+.formPadding{
+    float: left;
+}
+
+/* margin style */
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mt100 {
+    margin-top: 100px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.ml320px {
+    margin-left: 320px;
+}
+
+/* padding style */
+
+.p5Left{
+    padding-left: 5px;
+}
+
+.p5Right{
+    padding-right: 5px;
+}
+
+.p10 {
+    padding: 10px;
+}
+
+.pt30 {
+    padding-top: 30px;
+}
+
+/* font style */
+.ft2em {
+    font-size: 2em;
+}
+
+.ft1pt5em {
+    font-size: 1.5em;
+}
+
+.ft12 {
+    font-size: 12px;
+}
+
+.ft16{
+    font-size: 14px;
+}
+
+/* cursor style */
+.cursorNotAllowed {
+    cursor: not-allowed;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+/* display style */
+
+.displayFlex {
+    display: -webkit-inline-flex;
+}
+
+/* float style */
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+/* width style */
+
+.width150 {
+    width: 150px;
+}
+
+.width500 {
+    width: 500px;
+}
+
+/* height style */
+.height690{
+    height: 690px;
+}
+
+.height150 {
+    height: 150px;
+}
+
+.height50 {
+    height: 50px;
+}
+
+.height20 {
+    height: 20px;
+}
+
+.height1{
+    height: 1px;
+}
+
+/* scroll style */
+
+.scroll {
+    overflow: scroll;
+}
+
+/* right style */
+
+.r200 {
+    right: 200px;
+}
+
+/* map style */
+
+.map-container {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+
+.map-container iframe {
+    left:20%;
+    top:0;
+    height:60%;
+    width:100%;
+    position:absolute;
+}
+
+.mapIcon {
+    z-index: 1;
+    position: relative;
+} 
+
+/* extra style */
+.transparentButtons {
+    width:200px;
+    height: 100px;
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: solid;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.container .transparentButtons:hover {
+    background-color: black;
+  }
+
+.textDecoratorNone:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.textDecoratorUnderline {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    min-width: 12.5em !important;
+}
+
+.dropdown-menu.show{
+    opacity: 0.5;
+}
+
+.footer {
+
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.61);
+    color: white;
+    text-align: center;
+    border:1px solid;
+    color:grey;
+    margin-bottom: 0px;
+ }

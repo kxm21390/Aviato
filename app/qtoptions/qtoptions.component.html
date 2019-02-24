@@ -1,0 +1,117 @@
+<!-- <div class="container" style=" top: 100px; z-index: -1;">
+  <div class="spinner-border text-light mt100" style="width: 3rem; height: 3rem;" role="status" *ngIf="pageLoader">
+    <span class="sr-only">Loading...</span>
+</div> -->
+<img  *ngIf="pageLoader && !mapFlag" src="../../assets/LoadingChicken.gif">
+<!-- <h4 *ngIf="pageLoader" class="colorWhite">Loading</h4> -->
+<p id="qtid" aria-label="you are on search results page" tabindex="-1"></p>
+
+<div *ngIf="!pageLoader && !mapFlag" class="container">
+      <div class="row" style="background-color: #7d3c3cad; margin:0; border-radius: 5px 5px 0px 0px;"> 
+            <div class="formPadding col-xs-8 col-md-8" style="top:0.8em">
+                <div style="color:white;padding-left: 2%">Sort By:</div>
+                  <div class="floatLeft">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" (click)="radioChecked('name')">
+                        <label class="form-check-label" for="gridRadios1">
+                          <span style="color:white;">Name</span> 
+                        </label>
+                      </div>
+                      <div class="form-check floatLeft">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" (click)="radioChecked('rating')">
+                        <label class="form-check-label" for="gridRadios2">
+                            <span style="color:white">Rating </span> 
+                        </label>
+                      </div>
+                      <div class="form-check disabled floatLeft">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" (click)="radioChecked('distance')">
+                        <label class="form-check-label" for="gridRadios3">
+                            <span style="color:white">Distance</span>  
+                        </label>
+                      </div>
+                      <div class="form-check disabled floatLeft">
+                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="option4" (click)="radioChecked('duration')">
+                          <label class="form-check-label" for="gridRadios4">
+                              <span style="color:white">Duration</span> 
+                          </label>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <nav class="navbar navbar-light floatRight">
+                        <form class="displayFlex">
+                          <input class="form-control mr-sm-2" type="search" [(ngModel)]="searchInput" name="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-light" type="submit" (click)="clickSearch(searchInput)" [disabled]="searchInput === undefined || searchInput.length === 0">Search</button>
+                        </form>
+                    </nav>
+                </div>
+    </div>
+    
+      <div class=" colorWhite height690 scroll textAlignLeft" style="background-color: #000000ad; border-radius: 5px 5px 5px 5px;" *ngIf="!searchResultFlag"> 
+          <div *ngFor="let result of results; let i= index">
+              <button id="result_{{i}}" type="button" class="btn btn-link colorWhite textDecoratorNone" style="width:100%" tabindex="0" (click)="clickRoute(i)">
+              <div class="media textAlignLeft">
+                  <img [src]="result.photoSrc" alt="Italian Trulli"  class="align-self-start mr-3">
+                  <div class="media-body">
+                    <h5>{{result.name}}</h5>
+                    <span class="badge badge-success floatRight">{{selected.price}}</span>
+                    <span class="mt-4" style="padding-right:2%">Rating: {{result.rating}} |</span>
+                    <span class="mt-4" style="padding-right:2%">Distance: {{result.distance}} </span><br>
+                    <span class="mt-4" style="padding-right:2%">Estimated Total Time: <b>{{result.duration}}</b> </span>
+                    
+                  </div>
+              </div>
+              </button>
+              <hr class="bgWhite height5">
+          </div>
+        </div>
+        
+        <div class="container colorWhite height690 scroll col-md-10" *ngIf="searchResultFlag">
+            <h2>Invalid entry. Please enter valid string</h2>
+        </div>
+</div>
+<div *ngIf="mapFlag" class="container" style="background-color: #000000ad; border-radius: 5px 5px 5px 5px;">
+    <div class = "row" style="height: 387px;">
+        <div class="col-md-3" style="left:7%;"><span class="colorWhite textDecoratorUnderline"><b>BUS ROUTE DETAILS</b></span>
+          <div *ngFor="let result of finalBusDetailsArray; let i = index">
+            <div class="colorWhite"><b>{{result.stopId}}</b></div><br>
+            <div class="panel-group">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="mb-0">
+                    <a class="btn btn-link" data-toggle="collapse" style="padding-top:3px;" href="#collapse2_{{i}}">Bus Number</a>
+                  </h4>
+                </div>
+                <div id="collapse2_{{i}}" class="panel-collapse collapse">
+                  <ul class="list-group"  *ngFor="let route of result.routes">
+                    <li class="list-group-item">{{route.routeId}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="mb-0">
+                    <a class="btn btn-link" data-toggle="collapse" href="#collapse1_{{i}}">Timing</a>
+                  </h4>
+                </div>
+                <div id="collapse1_{{i}}" class="panel-collapse collapse">
+                  <ul class="list-group" *ngFor="let time of result.arrivalTime">
+                    <li class="list-group-item">{{time}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr class="bgWhite" style="margin: 0.3rem;">
+          </div>
+        </div>
+        <div class="col-md-9 z-depth-1-half map-container" #showMap tabindex="-1" aria-label="you are on map">
+          <div id="mapid" type="button" tabindex="0" class="btn btn-link close mapIcon" aria-label="Close map" (click)="closeMap()">
+            <span aria-hidden="true">&times;</span>
+          </div>
+          <iframe [src]="mapUrl | safe" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+</div>

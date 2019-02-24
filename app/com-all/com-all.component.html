@@ -1,0 +1,48 @@
+<div *ngIf="!loaderFlag">
+  <div class="spinner-border text-light mt100" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<h4 *ngIf="!loaderFlag" class="colorWhite">Loading</h4>
+<div class="container" *ngIf="loaderFlag">
+  <div id="searchId" attr.aria-label="you are on grab {{urlData}} page" tabindex="-1">
+    <h4 *ngIf="urlData != 'Explore'; else elseBlock" class="colorWhite">Grab {{urlData}}</h4>
+    <ng-template #elseBlock><h2 class="colorWhite">{{urlData}} Nearby</h2></ng-template> 
+    <br>
+  </div>
+    <div>
+      <h6 class="colorWhite">What is your price range?</h6>
+      <div class="btn-group dropright">
+        <button class="btn btn-secondary btn-lg dropdown-toggle transparentButtons mb40" [ngClass]= "{'bgRed': priceFlag}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{priceTitle}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button *ngFor="let price of prices" class="dropdown-item ft12 textDecoratorNone" type='button' (click)="clickPrice(price)" [attr.aria-label]="price === '$' ? 'low price' : price === '$$' ? 'medium price': 'high price'">{{price}}</button>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <h6 *ngIf="urlData === 'Food'" class="colorWhite">What do you feel like eating?</h6>
+      <h6 *ngIf="urlData === 'Drinks'" class="colorWhite">What type of drink are you feeling?</h6>
+      <h6 *ngIf="urlData === 'Explore'" class="colorWhite">What do you want to explore nearby?</h6>
+      <div class="btn-group dropright">
+        <button class="btn btn-secondary btn-lg dropdown-toggle transparentButtons mb40" [ngClass]= "{'bgRed': menuFlag}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span style="color:white">{{menuTitle}}</span> 
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button *ngFor="let value of dropdownValues" class="dropdown-item ft12 textDecoratorNone" type='button' (click)="clickMenu(value)">{{value}}</button>
+        </div>
+      </div>
+    </div>
+  
+    <button type="button" class="btn btn-secondary btn-lg" [disabled]="!priceFlag || !menuFlag" [ngClass]="{'bgRed': priceFlag && menuFlag}" (click)="clickQT(priceTitle, menuTitle);">
+      <span *ngIf="priceFlag && menuFlag; else notSelected" aria-label="click to search">QUICK TRIP!</span>
+      <ng-template #notSelected><span>SELECT OPTIONS</span></ng-template>
+    </button>
+
+    <div class="footer alert-success">
+        <h4 class="mb-0" style="color:white;"> 
+         Weather: <i class="icon-sun"></i> {{todayForecast.temperature}}{{todayForecast.temperatureUnit}} ({{todayForecast.windDirection}})</h4>
+      </div>
+</div>
